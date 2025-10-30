@@ -22,6 +22,12 @@ public class ItemService {
         this.cache = loadFromClasspath();
         this.byId  = cache.stream().collect(Collectors.toMap(Item::getId, i -> i, (a,b)->a, LinkedHashMap::new));
     }
+    // En ItemService.java
+    public Optional<Item> findItemById(String id) {
+        // asumiendo que ya tienes un Map<String, Item> byId
+        return Optional.ofNullable(byId.get(id));
+    }
+
 
     private List<Item> loadFromClasspath() {
         var path = "/recursos/items.json";
@@ -30,7 +36,7 @@ public class ItemService {
         try (var reader = new InputStreamReader(in, StandardCharsets.UTF_8)) {
             Type listType = new TypeToken<List<Item>>(){}.getType();
             List<Item> items = gson.fromJson(reader, listType);
-            return items != null ? items : List.of();
+            return (items != null) ? new ArrayList<Item>(items) : new ArrayList<Item>();
         } catch (Exception e) {
             throw new RuntimeException("Failed to load items.json: " + e.getMessage(), e);
         }

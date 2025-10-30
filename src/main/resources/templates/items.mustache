@@ -1,0 +1,27 @@
+<div class="shop-container">
+  <header class="shop-header">
+    <h1>Catálogo de artículos</h1>
+
+    
+
+  <section class="product-grid">
+    {{#items}}
+    <article class="product-card">
+      <a href="/ui/items/{{id}}" class="card-link" aria-label="{{name}}">
+        <div class="product-media">
+          <!-- Placeholder de imagen; si luego tienes URLs, cámbialo por <img src="{{imageUrl}}"> -->
+          <div class="img-skeleton"></div>
+        </div>
+        <div class="product-info">
+          <h2 class="product-name">{{name}}</h2>
+          <p class="product-price">{{priceFmt}}</p>
+        </div>
+      </a>
+    </article>
+    {{/items}}
+
+    {{^items}}
+    <p class="empty-state">No hay artículos por mostrar.</p>
+    {{/items}}
+  </section>
+</div>

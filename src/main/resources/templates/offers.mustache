@@ -1,0 +1,17 @@
+<h1>Ofertas recibidas</h1>
+
+<a href="/ui/items/{{itemId}}">← Volver al artículo</a>
+
+{{#offers}}
+<div class="list-item">
+  <div>
+    <strong>Postor:</strong> {{bidder}} <br>
+    <strong>Correo:</strong> {{email}} <br>
+    <strong>Oferta:</strong> ${{amount}}
+  </div>
+</div>
+{{/offers}}
+
+{{^offers}}
+<p>No hay ofertas aún para este artículo.</p>
+{{/offers}}
